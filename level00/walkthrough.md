@@ -1,8 +1,8 @@
 # level00
-The program requires a password  from `stdin`, and prints `Invalid Password` if the password is incorrect.
+The program waits for a password  from `stdin`, and prints `Invalid Password` if the password is incorrect.
 
 ## Goal
-Write the good password to `stdin` to get the flag.
+Write the good password in `stdin` to get the flag.
 
 ## Step 1
 Disassemble the binary to understand how it works.
