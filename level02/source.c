@@ -1,3 +1,4 @@
+// Decompiled with Hex-Rays
 //----- (0000000000400814) ----------------------------------------------------
 int __fastcall main(int argc, const char **argv, const char **envp)
 {

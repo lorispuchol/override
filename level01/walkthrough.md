@@ -1,4 +1,4 @@
-# level00
+# level01
 For this binary, `NX` is disabled.
 
 The program waits for username and password entry in `stdin`
