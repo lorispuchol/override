@@ -6,7 +6,9 @@
 3. The child process reads from `stdin` with a __vulnerable__ `gets` call
     - The program segfault when the input is too long by overwriting `eip` or `eax` (I didn't try to know)
 
-## Step: Find the offset of the buffer overflow
+
+
+## Step 2: Find the offset of the buffer overflow
 
 We need to entrer in the child process with gdb because the vulnerability is in the child process.
 
