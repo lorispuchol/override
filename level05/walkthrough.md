@@ -73,7 +73,7 @@ The address of `exit()` is stored at `0x080497e0` in the __GOT__
 It doesn't work because `4294957165` is too much
 
 
-## Necessary to optimize
+### Necessary to optimize
 
 We want to write `0xffffd871` at `0x080497e0`, That is to write 4 bytes at `0x080497e0`  
 
