@@ -1,3 +1,5 @@
+// Decompiled with Hex-Rays
+
 //----- (08048444) --------------------------------------------------------
 int __cdecl __noreturn main(int argc, const char **argv, const char **envp)
 {
