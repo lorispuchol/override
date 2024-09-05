@@ -1,22 +1,22 @@
 // Decompiled with Hex-Rays
 
-_BOOL4 verify_user_name()
+bool verify_user_name()
 {
   puts("verifying username....\n");
   return memcmp(a_user_name, "dat_wil", 7u) != 0;
 }
 
 //----- (080484A3) --------------------------------------------------------
-_BOOL4 __cdecl verify_user_pass(const void *a1)
+bool verify_user_pass(const void *a1)
 {
   return memcmp(a1, "admin", 5u) != 0;
 }
 
 //----- (080484D0) --------------------------------------------------------
-int __cdecl main(int argc, const char **argv, const char **envp)
+int main(int argc, const char **argv, const char **envp)
 {
   char s[64]; // [esp+1Ch] [ebp-4Ch] BYREF
-  _BOOL4 v5; // [esp+5Ch] [ebp-Ch]
+  bool v5; // [esp+5Ch] [ebp-Ch]
 
   memset(s, 0, sizeof(s));
   v5 = 0;

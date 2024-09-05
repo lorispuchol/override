@@ -5,7 +5,7 @@
 2. This two variables are passed to `auth` function
 3. `auth()` performs operation between `s` and `nb`
 4. `auth()` returns `(nb != v4)`
-5. If `auth` return `0`, `main()` run a shell
+5. If `auth(0)` return `0`, `main()` runs a shell
 
 
 ### Resume
@@ -19,9 +19,7 @@
 - All `s[i]` must be strictly superior tha
 
 ## Goal
-Reproduce the hashing process with a valid random string:`helllo`. Then print the result.
-
-see [test.c](https://github.com/lorispuchol/override/blob/main/level06/Ressources/test.c)
+Reproduce the hashing process with [our own program](https://github.com/lorispuchol/override/blob/main/level06/Ressources/test.c), give it a valid random string:`helllo`. Then print the result.
 
 ## Step 2
 ```bash

@@ -1,11 +1,11 @@
 # level02
-- ! This binary is an ELF in 64-bit !  
-Adresses are 8 bytes long
-- RELRO is disabled
+- !! This binary is an ELF in 64-bit, thus adresses are 8 bytes long !!
+- RELRO protection is disable. My presumption is that we will have to overwrite the __Global Offset Table (GOT)__
+
 
 ## Step 1 : Understand the program
 
-1. The program reads the 41 bytes of the flag in `/home/users/level03/.pass` file and store the flag in `ptr[48]`
+1. The program reads the 41 bytes of the flag in `/home/users/level03/.pass` and store it in `ptr[48]`
 2. The program waits for username entry and password entry in `stdin`
 3. The program compares password entry to the flag
     - If equal: Prints `Greetings` and run a shell
@@ -30,9 +30,10 @@ AAAABBBB ffffe4c0 0 43 2a2a2a2a 2a2a2a2a ffffe6b8 f7ff9a08 43434343 0 0 0 0 does
 Yeah ! We access to the password buffer thanks to the the __8th__ specifer `%x`.
 
 ### Solution
-Since the program exit if the password is incorrect, we can make a ROP attack by changing the address of `exit()` in the __GOT__ by the address where the program run a shell. 
+Since the program exits if the password is incorrect, we can change the address of `exit()` in the __GOT__ by the address where the program run a shell. 
 
-> Do it by the specifier `%n`. This specifier writes the number of characters written so far to the address of the specified parameter on the stack. In our case, the specified parameter will be password buffer filled with the address of `exit()` entry of the __GOT__.
+> Do it by the specifier `%n`. This specifier writes the number of characters written so far to the address pointed by its argument.  
+In our case, its argument is the buffer filled with the address of `exit()` entry of the __GOT__.
 
 ## Step 3
 
@@ -71,7 +72,7 @@ $ whoami
 level02
 ```
 
-> We have a shell at `0x400a85`
+We have a shell at `0x400a85`
 
 ## Exploit
 ```bash
@@ -96,9 +97,8 @@ level02
 
 > Remember: all the flag have a size of 40 bytes
 
-Now we have to
-
-- Remove the 0x
-- Split into 5 blocks --> 5 blocks of 8 bytes = 40 bytes
+Now we just have to:
+- Remove the `0x`
+- Split into 5 blocks --> 5 blocks of 8 bytes = 40 bytes (8 bytes because we are in 64-bit)
 - Convert to ASCII
 - Revert endian

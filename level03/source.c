@@ -14,19 +14,19 @@ int clear_stdin()
 //----- (08048617) --------------------------------------------------------
 int get_unum()
 {
-  int v1[3]; // [esp+1Ch] [ebp-Ch] BYREF
+  int v1; // [esp+1Ch] [ebp-Ch] BYREF
 
-  v1[0] = 0;
+  v1 = 0;
   fflush(stdout);
-  __isoc99_scanf("%u", v1);
+  scanf("%u", &v1);
   clear_stdin();
-  return v1[0];
+  return v1;
 }
 // 8048530: using guessed type int __isoc99_scanf(const char *, ...);
 // 8048617: using guessed type int var_C[3];
 
 //----- (0804864F) --------------------------------------------------------
-void __noreturn prog_timeout()
+void prog_timeout()
 {
   int v0; // eax
 
@@ -56,7 +56,7 @@ int __cdecl decrypt(char a1)
 
 
 //----- (08048747) --------------------------------------------------------
-int __cdecl test(int a1, int a2)
+int test(int a1, int a2)
 {
   int result; // eax
   char v3; // al
@@ -89,7 +89,7 @@ int __cdecl test(int a1, int a2)
 }
 
 //----- (0804885A) --------------------------------------------------------
-int __cdecl main(int argc, const char **argv, const char **envp)
+int main(int argc, const char **argv, const char **envp)
 {
   unsigned int v3; // eax
   int savedregs; // [esp+20h] [ebp+0h] BYREF
@@ -100,7 +100,7 @@ int __cdecl main(int argc, const char **argv, const char **envp)
   puts("*\t\tlevel03\t\t**");
   puts("***********************************");
   printf("Password:");
-  __isoc99_scanf("%d", &savedregs);
+  scanf("%d", &savedregs);
   test(savedregs, 322424845);
   return 0;
 }

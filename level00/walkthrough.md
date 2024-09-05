@@ -51,7 +51,7 @@ End of assembler dump.
 
 ## Step 2
 - A `cmp` instruction is made just after the call of `scanf`
-- `0x149c` is compared to `$eax` (the return of `scanf)
+- `0x149c` is compared to `$eax` (the return of `scanf`)
 - `0x149c` is `5276` in decimal
 
 ## Exploit

@@ -13,7 +13,7 @@ The program waits for a string input from `stdin`
 4. `decrypt()` performs an operation on each element of the string `str` <__Q}|u`sfg~sf{}|a3__>  
     - $str[i] = str[i] \oplus result$  
     Then
-        - If transformed `str` == `Congratulations!`:  __a shell is run__
+        - Once transformed, if `str` == `Congratulations!`:  __a shell is run__
         - Else: the program terminates
 
 5. So, we have this equation:

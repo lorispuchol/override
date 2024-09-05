@@ -4,20 +4,21 @@
 1. At the beginning, the program `forks`
 2. The parent process `waits` until the child process `exits` or until a signal is received
 3. The child process reads from `stdin` with a __vulnerable__ `gets` call
-    - The program segfault when the input is too long by overwriting `eip` or `eax` (I didn't try to know)
+    - __The program segfault when the input is too long by overwriting `eip` or `eax` (I didn't try to know)__
 
 
 
-## Step 2: Find the offset of the buffer overflow
+## Step 2: Find the offset between the buffer and `eip` (or `eax`)
 
-We need to entrer in the child process with gdb because the vulnerability is in the child process.
+> We need to entrer in the child process with gdb because the vulnerability is in the child process.
 
-`(gdb) set follow-fork-mode child`
+```bash
+(gdb) set follow-fork-mode child
+```
 
-Otherwise, we will stay on the parent process
+If omitted, gdb will stays on the parent process
 
 ```console
-(gdb) set follow-fork-mode child
 (gdb) r
 Starting program: /home/users/level04/level04 
 [New process 1948]
@@ -29,11 +30,13 @@ Program received signal SIGSEGV, Segmentation fault.
 0x41326641 in ?? ()
 ```
 
-> Offset = 156
+Offset = 156
+
+> [Buffer overflow pattern generator](https://wiremask.eu/tools/buffer-overflow-pattern-generator/)
 
 ## Step 3
 
-Once in the child process, we can find the address of `system`, `exit` and `"/bin/sh"` to build a __Ret2libc__
+Once in the child process, we can find the address of `system`, `exit` and `"/bin/sh"` to build a [__Ret2libc__](https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/return-to-libc-ret2libc)
 
 - Address of `system`:
 ```
