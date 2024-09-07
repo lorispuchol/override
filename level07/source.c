@@ -34,16 +34,16 @@ int get_unum()
 
 
 //----- (08048630) --------------------------------------------------------
-int store_number(int a1)
+int store_number(int a1) // a1 = 0
 {
   unsigned int unum; // [esp+18h] [ebp-10h]
-  unsigned int v3; // [esp+1Ch] [ebp-Ch]
+  unsigned int index; // [esp+1Ch] [ebp-Ch]
 
   printf(" Number: ");
   unum = get_unum();
   printf(" Index: ");
-  v3 = get_unum();
-  if ( v3 == 3 * (v3 / 3) || HIBYTE(unum) == 183 )
+  index = get_unum();
+  if ( index == 3 * (index / 3) || HIBYTE(unum) == 183 )
   {
     puts(" *** ERROR! ***");
     puts("   This index is reserved for wil!");
@@ -52,7 +52,7 @@ int store_number(int a1)
   }
   else
   {
-    *(_DWORD *)(a1 + 4 * v3) = unum;
+    *(_DWORD *)(a1 + 4 * index) = unum;
     return 0;
   }
 }
@@ -60,11 +60,11 @@ int store_number(int a1)
 //----- (080486D7) --------------------------------------------------------
 int read_number(int a1)
 {
-  int unum; // [esp+1Ch] [ebp-Ch]
+  int index; // [esp+1Ch] [ebp-Ch]
 
   printf(" Index: ");
-  unum = get_unum();
-  printf(" Number at data[%u] is %u\n", unum, *(_DWORD *)(a1 + 4 * unum));
+  index = get_unum();
+  printf(" Number at data[%u] is %u\n", index, *(_DWORD *)(a1 + 4 * index));
   return 0;
 }
 
