@@ -11,7 +11,7 @@
         ```
 
 ## Goal
-Since we can store any value at any position, the goal is to overwrite the `saved eip` of main function with a [__Ret2libc__ __attack__](https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/return-to-libc-ret2libc).
+Since we can store any value at "any" position, the goal is to overwrite the `saved eip` of main function with a [__Ret2libc__ __attack__](https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/return-to-libc-ret2libc).
 
 ## Step 2: find where is saved eip
 ```bash
@@ -89,7 +89,7 @@ https://stackoverflow.com/questions/19124095/return-to-lib-c-buffer-overflow-exe
 Given that the index can't be divisible by 3. we can't require index 114. To store value at this position we overflap `unsigned int max`.
 
 
-- $UINTMAX = 2^{32}$  
+- $UINTMAX = 2^{32} - 1$  
 
 - $\frac{2^{32}}{4} + 114 = 1073741938$
 
