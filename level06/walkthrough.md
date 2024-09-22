@@ -7,7 +7,7 @@
 4. `auth()` returns `(nb != v4)`
 5. If `auth()` return `0`, thus the `main()` runs a shell
 
->> So if `v4` == `nb`, we have a shell
+> So if `v4` == `nb`, we have a shell
 
 
 ### Resume
