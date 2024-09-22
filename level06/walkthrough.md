@@ -3,13 +3,14 @@
 ## Step 1: Understand the program
 1. Main function waits for a string `s` and an integer `nb`  (stored with `fgets`, `scanf`)
 2. This two variables are passed to `auth` function
-3. `auth()` performs operation between `s` and `nb`
+3. In `auth()`, `v4` stores the result of operations on `s`
 4. `auth()` returns `(nb != v4)`
-5. If `auth(0)` return `0`, `main()` runs a shell
+5. If `auth()` return `0`, thus the `main()` runs a shell
+
+>> So if `v4` == `nb`, we have a shell
 
 
 ### Resume
-
 - `v4` is derived from `s` only.
 - Then `v4` is compared to `nb`
 
