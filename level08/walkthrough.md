@@ -1,5 +1,5 @@
 # level08
-The program require a filename as argument `argv[1]1
+The program require a filename as argument `argv[1]`
 
 ```console
 $ ./level08
