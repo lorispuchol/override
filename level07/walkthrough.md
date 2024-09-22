@@ -54,7 +54,7 @@ Find the value through the stack
 (gdb) x/d 0xffffd528
 0xffffd528:	19951999
 ```
-__The array is at `0xffffd524`__. We subtract 4 because it is on array of unsigned int (4 bytes long).
+__The array is at `0xffffd524`__. We subtract 4 because it is at the `[1]` position, and it is an array of unsigned int (4 bytes long).
 
 ```bash
 (gdb) p (0xffffd6ec - 0xffffd524)
@@ -86,7 +86,7 @@ https://stackoverflow.com/questions/19124095/return-to-lib-c-buffer-overflow-exe
 
 ## Exploit
 
-Given that the index can't be divisible by 3. we can't require index 114. To store value at this position we overflap `unsigned int max`.
+Given that the index can't be divisible by 3. we can't require index 114. To store value at this position we overlap `unsigned int max`.
 
 
 - $UINTMAX = 2^{32} - 1$  
