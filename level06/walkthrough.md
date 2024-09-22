@@ -17,7 +17,7 @@
 
 ### Requirements:
 - The size of `s` must be at least 6
-- All `s[i]` must be strictly superior tha
+- All `s[i]` must be strictly superior than 31
 
 ## Goal
 Reproduce the hashing process with [our own program](https://github.com/lorispuchol/override/blob/main/level06/Ressources/test.c), give it a valid random string:`helllo`. Then print the result.
